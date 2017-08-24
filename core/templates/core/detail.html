@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+
+{% load staticfiles %}
+    {% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <center><h2 style="color:blueviolet">{{ project.project_heading }}</h2></center>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for task in tasks %}        
+            <div class="col-md-6 col-sm-3 col-lg-8">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <a href="{% url 'comment' pk=task.pk%}">
+                            <h3>{{ task.task_heading}}</h3>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <ol>
+                            <li><b>Due Date</b>:--{{ task.due_date }}</li>
+                            <br>
+                            <li><b>Assigned To</b>:--{{task.assigned_to}}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            {% if forloop.counter == 1 %}
+                <div class="col-md-3 col-sm-1 col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <center><h3>MEMBERS</h3></center>
+                        </div>
+                        <div class="panel-body">
+                            <ol>
+                                {% for user in  users %}
+                                    <h4><li>{{ user }}</li></h4>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endblock %}

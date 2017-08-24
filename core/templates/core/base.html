@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Task_management</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    </head>
+    <body class="body">
+        <nav class="navbar navbar-default navbar-static-top text-center back" style="background-color: #fff;">
+            <a href='{% url "home" %}'>
+                <img src="{% static 'images/logo.png' %}" height="80px">
+            </a>
+        </nav>
+        <main class="container" role="main">
+            {% block content %}
+            {% endblock %}
+        </main> 
+
+        <div style="height: 15%;"></div>
+        <footer class="navbar navbar-default navbar-fixed-bottom text-center" style="background-color: #fff; padding: 0px;">
+            <img src="{% static 'images/treasuregram.png' %}" alt="TreasureGram" width="70" style="border-radius: 50px;">
+            @TASK MANAGEMENT 2017
+            <img src="{% static 'images/treasuregram.png' %}" alt="TreasureGram" width="70" style="border-radius: 50px;">
+        </footer>
+    </body>
+</html>
