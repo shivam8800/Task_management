@@ -5,9 +5,9 @@
         <div class="row">
             {% for project in all_projects %}
             <div class="col-md-4">
-                <a href="{% url 'detail' pk=project.pk %}">
-                    <div class="panel panel-default" style="padding: 15%;">
-                        <center><h2><div class="panel-body">{{project.project_heading}}</div></h2></center>
+                <a class="clor_1" href="{% url 'detail' pk=project.pk %}">
+                    <div class="panel_1">
+                        {{project.project_heading}}
                     </div>
                 </a>
             </div>

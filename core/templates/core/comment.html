@@ -2,14 +2,26 @@
 
 {% load staticfiles %}
 {% block content %}
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-10">
-        <div class="panel panel-default" style="width: 80%;">
-            <div class="panel-heading">
-                <center><h2 style="color:blueviolet">{{ task.task_heading }}</h2></center>
+    <div class="big-box">
+        <div class="box">
+            <div class="panel_0" style="margin:0;">
+                <div class="header">
+                    {{ task.task_heading }}
+                </div>
+                <div class="panel-body">
+                    <ol>
+                        {%for comment in comments %}
+                            <h3><li>{{ comment.comment_text }}</li></h3>
+                        {% endfor %}
+                    </ol>
+                </div>
             </div>
-        </div>
-        </div>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Enter a comment.." name="comment">
+                <button type="submit" class="save btn btn-default submitbutton" style="margin-left: 30px; margin-bottom: 10px; width: 10%;">Post</button>
+            </form>
+        </div> 
     </div>
+
 {% endblock %}

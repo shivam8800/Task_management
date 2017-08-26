@@ -22,4 +22,4 @@ def comment(request, pk):
 	a_task = Task.objects.get(pk=pk)
 	task_comment = Task_comment.objects.filter(task=a_task)
 	# import ipdb; ipdb.set_trace()
-	return render(request, 'core/comment.html', {'task': a_task, 'comment': task_comment})
+	return render(request, 'core/comment.html', {'task': a_task, 'comments': task_comment})
