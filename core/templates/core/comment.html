@@ -8,10 +8,23 @@
                 <div class="header">
                     {{ task.task_heading }}
                 </div>
-                <div class="panel-body">
+                <div class="panel-body comment">
                     <ol>
                         {%for comment in comments %}
                             <h3><li>{{ comment.comment_text }}</li></h3>
+
+                            <!-- this is for appearance of nestedcomment -->
+                            <ul id="nestedcomment{{comment.id}}">
+                                {% for nes in comment.nested_comments%}
+                                <li>{{nes}}</li>
+                                {% endfor %}
+                            </ul>
+
+                            <!-- this is for input text tag from which user can type nested comment and post it -->
+                            <div id="nested{{comment.id}}"></div>
+                            
+                            <!-- this is reply button by which user can see nestedcomment box -->
+                            <p style="margin-left: 50px; color:blue;" data-id="{{ comment.id }}" class="reply">Reply</p>
                         {% endfor %}
                     </ol>
                 </div>

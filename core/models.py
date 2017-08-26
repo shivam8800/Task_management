@@ -23,3 +23,10 @@ class Task_comment(models.Model):
 
 	def __str__(self):
 		return self.comment_text
+
+class Nested_comment(models.Model):
+	task_comment = models.ForeignKey(Task_comment)
+	nested_comment_text = models.CharField(max_length=1000)
+
+	def __str__(self):
+		return self.nested_comment_text

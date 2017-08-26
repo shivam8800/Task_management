@@ -5,4 +5,5 @@ urlpatterns = [
     url(r'^$',views.home, name="home"),
     url(r'^project_page/(?P<pk>\d+)/$',views.detail, name="detail"),
     url(r'^task_page/(?P<pk>\d+)/$', views.comment, name="comment"),
+    url(r'^postnestedcomment/$', views.nestedcomment, name="nestedcomment"),
 ]

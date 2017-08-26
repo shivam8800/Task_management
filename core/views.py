@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Project, Task, Task_comment
+from .models import Project, Task, Task_comment, Nested_comment
 from django.contrib.auth.models import User
 from pprint import pprint
 
@@ -21,5 +21,28 @@ def detail(request, pk):
 def comment(request, pk):
 	a_task = Task.objects.get(pk=pk)
 	task_comment = Task_comment.objects.filter(task=a_task)
+
+	for comment in task_comment:
+		comment.nested_comments = comment.nested_comment_set.all()
+
 	# import ipdb; ipdb.set_trace()
-	return render(request, 'core/comment.html', {'task': a_task, 'comments': task_comment})
+	if request.method == "POST":
+		comment = request.POST.get('comment')
+		new_comment  = Task_comment.objects.create(task=a_task, comment_text=comment)
+		return redirect('comment', pk=pk)
+	else:
+		return render(request, 'core/comment.html', {'task': a_task, 'comments': task_comment})
+
+def nestedcomment(request):
+	if request.method == "POST":
+		if request.is_ajax():
+			replytext = request.POST.get('input')
+			commentid = request.POST.get('comment_id')
+			taskComment = Task_comment.objects.get(pk=commentid)
+			nestedcomment = Nested_comment.objects.create(task_comment = taskComment,nested_comment_text = replytext)
+			nestedcomment.save()
+			return redirect('/')
+		else:
+			pprint("this is not ajax request")
+	return render(request, 'base.html')
+

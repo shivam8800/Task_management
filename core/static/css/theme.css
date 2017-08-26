@@ -3,15 +3,18 @@
 }
 .body{
     background:#dfe3ee;
-    padding-top: 80px;
+    padding-top: 85px;
     padding-bottom: 30px;
     font-family: ubuntu;
 }
 .big-box{
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 80vh;
+}
+.comment{
+    height: 362px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 .box{
     width: 60%;
@@ -143,4 +146,7 @@ button:hover{
 }
 .panel:hover{
     box-shadow: 0px 0px 10px 5px #ccc !important;
+}
+.reply:hover{
+    cursor: pointer;
 }
