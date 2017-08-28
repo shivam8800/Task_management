@@ -14,9 +14,9 @@
                             <h3><li>{{ comment.comment_text }}</li></h3>
 
                             <!-- this is for appearance of nestedcomment -->
-                            <ul id="nestedcomment{{comment.id}}">
+                            <ul class="nestedcomment" id="nestedcomment{{comment.id}}">
                                 {% for nes in comment.nested_comments%}
-                                <li>{{nes}}</li>
+                                <li class="NESTED">{{nes}}</li>
                                 {% endfor %}
                             </ul>
 

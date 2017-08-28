@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+<div class="big-box" style="align-items: center; height: 80%;">
+    <form method="POST" class="form_box">
+        {% csrf_token %}
+        <div class="form_header">
+            {{project.project_heading}}
+        </div>
+        <div class="input_box">
+            <div class="input_title">
+                Assign Task
+            </div>
+            <input type="text" placeholder="Enter The Task..." class="test" name="Task_text">
+        </div> 
+        <div class="input_box">
+            <div class="input_title">
+                Select User
+            </div>
+            <select class="select_option" name="User">
+                <option>none</option>
+                {% for user in all_user %}
+                <option name="{{user}}">{{user}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="input_box">
+            <div class="input_title">
+                Due Date
+            </div>
+            <input type="date" name="Date" style="line-height: 1 !important; margin-left: -10px; border-radius: 5px !important; width: 40%;">
+            <input type="time" name="Time" style="line-height: 1 !important; margin-left: 20px; border-radius: 5px !important; width: 40%;">
+        </div>
+        <div class="submit_box">
+            <button class="submit_button">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

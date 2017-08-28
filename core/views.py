@@ -44,5 +44,20 @@ def nestedcomment(request):
 			return redirect('/')
 		else:
 			pprint("this is not ajax request")
-	return render(request, 'base.html')
+	return redirect('/')
 
+def assign_task(request, pk):
+	a_project = Project.objects.get(pk=pk)
+	# for getting all user of an projects
+	all_user =  a_project.user.all()
+	if request.method == "POST":
+		task_heading = request.POST.get('Task_text')
+		selected_user = request.POST.get('User')
+		user = User.objects.get(username=selected_user)
+		date = request.POST.get('Date')
+		time = request.POST.get('Time')
+		pprint(date+" " +time)
+		task = Task.objects.create(project=a_project,task_heading=task_heading,assigned_to=user,due_date=date+" " +time)
+		return redirect('detail', pk=pk)
+	else:
+		return render(request, 'core/task_assign.html', {'all_user': all_user, 'project': a_project})

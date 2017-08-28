@@ -3,9 +3,12 @@
 {% load staticfiles %}
     {% block content %}
     <div class="panel panel-default top_m">
+        <div class="head">
             {{ project.project_heading }}
+        </div>
+        <div class="post hidden-lg hidden-md hidden-sm"><a class="post_button" href="{% url 'assign_task' pk=project.pk%}">post</a></div>
     </div>
-
+<div class="post_1"><a class="post_button_1" href="{% url 'assign_task' pk=project.pk%}">post</a></div>
     <div class="row">
         {% for task in tasks %}        
             <div class="col-md-6 col-sm-3 col-lg-8">
@@ -24,23 +27,20 @@
                     </div>
                 </div>
             </div>
+        {% endfor %}
 
-            {% if forloop.counter == 1 %}
-                <div class="col-md-3 col-sm-1 col-lg-4">
                     <div class="panel panel-default panel_3">
                         <div class="panel_4 ">
                             MEMBERS
                         </div>
-                        <div class="panel-body">
+                         <div class="panel-body" id="hide_member" style="overflow-y:hidden; overflow-y:scroll;">
                             <ol>
                                 {% for user in  users %}
                                     <h4><li>{{ user }}</li></h4>
                                 {% endfor %}
                             </ol>
-                        </div>
+                        </div> 
                     </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+
     </div>
     {% endblock %}

@@ -45,7 +45,7 @@ $(document).ready(function(){
                     success: function(json){
                         console.log("yes I got it");
                         $("#nested" + dataId).empty();
-                        $("#nestedcomment" + dataId).append("<li>" +inputvalue + "</li>");
+                        $("#nestedcomment" + dataId).append("<li class='NESTED'>" +inputvalue + "</li>");
                     },
                     error: function(err){
                         console.log(err);
@@ -58,4 +58,16 @@ $(document).ready(function(){
         })
 
     });
+    $('#hide_member').hide();
+    var count=0;
+    $('.panel_4').click(function(){
+        if (count == 0){
+            $('#hide_member').show(1000);
+            count = count +1;
+        }
+        else{
+            $('#hide_member').hide(1000);
+            count =0;
+        }
+    })
 });
